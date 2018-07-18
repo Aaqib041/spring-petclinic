@@ -8,9 +8,8 @@ node {
    }
    stage('Build Maven Image') {
 
-	steps {
-                sh "sudo chown root:jenkins /run/docker.sock"
-            }
+	sh " echo Giving Jenkins Right Permissions to Use Docker "
+        sh "sudo chown root:jenkins /run/docker.sock"
         sh " echo Current User is : $USER "
 	docker.build("maven-build")
    }
