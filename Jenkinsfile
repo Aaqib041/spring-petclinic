@@ -7,7 +7,8 @@ node {
     
    }
    stage('Build Maven Image') {
-        docker.build("maven-build")
+        sh " echo Current User is : $USER "
+	docker.build("maven-build")
    }
    
    stage('Run Maven Container') {
