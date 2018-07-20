@@ -12,7 +12,7 @@ node {
        // sh "sudo chown root:jenkins /run/docker.sock"
         sh " echo Current User is : $USER "
 	//docker.build("maven-build")
-	sh 'docker build -t "akeeb/petClinic" .'
+	sh 'docker build -t "akeeb/petclinic" .'
    }
    
    stage('Run Maven Container') {
@@ -21,7 +21,7 @@ node {
        // sh " docker rm -f maven-build-container"
         
         //Run maven image
-        sh " docker run  --name maven-build-container akeeb/petClinic"
+        sh " docker run  --name maven-build-container akeeb/petclinic"
    }
    
    stage('Deploy Spring Boot Application') {
