@@ -8,10 +8,11 @@ node {
    }
    stage('Build Maven Image') {
 
-	sh " echo Giving Jenkins Right Permissions to Use Docker "
+	sh " echo Building Docker File "
        // sh "sudo chown root:jenkins /run/docker.sock"
         sh " echo Current User is : $USER "
-	docker.build("maven-build")
+	//docker.build("maven-build")
+	docker build -t "petClinic" .
    }
    
    stage('Run Maven Container') {
@@ -20,7 +21,7 @@ node {
        // sh " docker rm -f maven-build-container"
         
         //Run maven image
-        sh " docker run  --name maven-build-container maven-build"
+        sh " docker run  --name maven-build-container petClinic"
    }
    
    stage('Deploy Spring Boot Application') {
@@ -28,7 +29,7 @@ node {
          //Remove maven-build-container if it exisits
        //sh " docker rm -f java-deploy-container"
        
-        sh " docker run --name java-deploy-container --volumes-from maven-build-container -d -p 8082:8082 denisdbell/petclinic-deploy"
+        sh " docker run --name java-deploy-container --volumes-from maven-build-container -d -p 8092:8082 denisdbell/petclinic-deploy"
    }
 
 }
