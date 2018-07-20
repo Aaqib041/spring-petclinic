@@ -21,7 +21,7 @@ node {
        // sh " docker rm -f maven-build-container"
         
         //Run maven image
-        sh " docker run  --name maven-build-container akeeb/petclinic"
+        sh " docker run  --name akeeb-build-container akeeb/petclinic"
    }
    
    stage('Deploy Spring Boot Application') {
@@ -29,7 +29,7 @@ node {
          //Remove maven-build-container if it exisits
        //sh " docker rm -f java-deploy-container"
        
-        sh " docker run --name java-deploy-container --volumes-from maven-build-container -d -p 8092:8082 denisdbell/petclinic-deploy"
+        sh " docker run --name akeeb-deploy-container --volumes-from akeeb-build-container -d -p 8092:8082 denisdbell/petclinic-deploy"
    }
 
 }
