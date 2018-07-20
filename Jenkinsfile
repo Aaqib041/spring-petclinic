@@ -12,7 +12,7 @@ node {
        // sh "sudo chown root:jenkins /run/docker.sock"
         sh " echo Current User is : $USER "
 	//docker.build("maven-build")
-	sh " docker build -t "akeeb/petClinic" . "
+	sh 'docker build -t "akeeb/petClinic" .'
    }
    
    stage('Run Maven Container') {
