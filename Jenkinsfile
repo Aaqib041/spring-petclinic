@@ -17,7 +17,7 @@ node {
    stage('Run Maven Container') {
        
         //Remove maven-build-container if it exisits
-        sh " docker rm -f maven-build-container"
+       // sh " docker rm -f maven-build-container"
         
         //Run maven image
         sh " docker run --rm --name maven-build-container maven-build"
