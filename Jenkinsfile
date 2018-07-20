@@ -6,6 +6,11 @@ node {
         git 'https://github.com/denisdbell/spring-petclinic.git'
     
    }
+   stage('RHC Client Test'){
+	//Testing rhc tool installation ans setup
+	sh "rhc"
+	sh "rhc --version"
+   }
    stage('Build Maven Image') {
 
 	sh " echo Building Docker File "
